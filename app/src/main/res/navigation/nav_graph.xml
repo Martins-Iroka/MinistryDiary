@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/monthlyReportsFrag">
+
+    <fragment
+        android:id="@+id/monthlyReportsFrag"
+        android:name="com.martdev.android.ministrydiary.ministryreport.monthlyreportcards.MonthlyReportsFrag"
+        android:label="Monthly Report Cards"
+        tools:layout="@layout/generic_recycler_view">
+        <action
+            android:id="@+id/action_monthlyReportsFrag_to_returnVisitsFrag"
+            app:destination="@id/returnVisitsFrag" />
+        <action
+            android:id="@+id/action_monthlyReportsFrag_to_monthlyReportFrag"
+            app:destination="@id/monthlyReportFrag"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <argument
+            android:name="message"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditBibleStudentFrag"
+        android:name="com.martdev.android.ministrydiary.biblestudent.addeditbiblestudent.AddEditBibleStudentFrag"
+        android:label="{toolbar_title}"
+        tools:layout="@layout/add_edit_bs">
+        <action
+            android:id="@+id/action_addEditBibleStudentFrag_to_bibleStudentsFrag"
+            app:destination="@id/bibleStudentsFrag"
+            app:popUpTo="@+id/bibleStudentsFrag"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="bsId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="rv_to_bs_detail"
+            app:argType="string[]"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_addEditBibleStudentFrag_to_dateDialog"
+            app:destination="@id/dateDialog" />
+        <action
+            android:id="@+id/action_addEditBibleStudentFrag_to_timeDialog"
+            app:destination="@id/timeDialog" />
+        <argument
+            android:name="toolbar_title"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditMinistryReport"
+        android:name="com.martdev.android.ministrydiary.ministryreport.addeditministryreport.AddEditMinistryReport"
+        android:label="AddEditMinistryReport"
+        tools:layout="@layout/add_edit_report">
+        <argument
+            android:name="reportId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_addEditMinistryReport_to_monthlyReportFrag"
+            app:destination="@id/monthlyReportFrag"
+            app:popUpTo="@+id/monthlyReportFrag"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addEditMinistryReport_to_dateDialog"
+            app:destination="@id/dateDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditRVFrag"
+        android:name="com.martdev.android.ministrydiary.returnvisit.addeditreturnvisit.AddEditRVFrag"
+        android:label="{toolbar_title}"
+        tools:layout="@layout/add_edit_rv">
+        <action
+            android:id="@+id/action_addEditRVFrag_to_returnVisitsFrag"
+            app:destination="@id/returnVisitsFrag"
+            app:popUpTo="@+id/returnVisitsFrag"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="rvId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_addEditRVFrag_to_dateDialog"
+            app:destination="@id/dateDialog" />
+        <action
+            android:id="@+id/action_addEditRVFrag_to_timeDialog"
+            app:destination="@id/timeDialog" />
+        <argument
+            android:name="toolbar_title"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/bibleStudentDetailFrag"
+        android:name="com.martdev.android.ministrydiary.biblestudent.biblestudentdetail.BibleStudentDetailFrag"
+        android:label="{bsName}"
+        tools:layout="@layout/bible_student_detail">
+        <action
+            android:id="@+id/action_bibleStudentDetailFrag_to_addEditBibleStudentFrag"
+            app:destination="@id/addEditBibleStudentFrag" />
+        <argument
+            android:name="bsId"
+            app:argType="string" />
+        <argument
+            android:name="bsName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/bibleStudentsFrag"
+        android:name="com.martdev.android.ministrydiary.biblestudent.biblestudents.BibleStudentsFrag"
+        android:label="Bible Students"
+        tools:layout="@layout/generic_recycler_view">
+        <action
+            android:id="@+id/action_bibleStudentsFrag_to_bibleStudentDetailFrag"
+            app:destination="@id/bibleStudentDetailFrag" />
+        <action
+            android:id="@+id/action_bibleStudentsFrag_to_addEditBibleStudentFrag"
+            app:destination="@id/addEditBibleStudentFrag" />
+        <argument
+            android:name="message"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/dateDialog"
+        android:name="com.martdev.android.ministrydiary.dialog.DateDialog"
+        android:label="DateDialog"
+        tools:layout="@layout/date_picker_dialog"/>
+    <fragment
+        android:id="@+id/ministryReportsFrag"
+        android:name="com.martdev.android.ministrydiary.ministryreport.ministryreports.MinistryReportsFrag"
+        android:label="MinistryReportsFrag"
+        tools:layout="@layout/generic_recycler_view">
+        <action
+            android:id="@+id/action_ministryReportsFrag_to_addEditMinistryReport"
+            app:destination="@id/addEditMinistryReport" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/monthlyReportFrag"
+        android:name="com.martdev.android.ministrydiary.ministryreport.monthlyreportcard.MonthlyReportFrag"
+        android:label="MonthlyReportFrag"
+        tools:layout="@layout/ministry_report_view">
+        <action
+            android:id="@+id/action_monthlyReportFrag_to_addEditMinistryReport"
+            app:destination="@id/addEditMinistryReport" />
+        <action
+            android:id="@+id/action_monthlyReportFrag_to_ministryReportsFrag"
+            app:destination="@id/ministryReportsFrag"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="message"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/returnVisitDetailFrag"
+        android:name="com.martdev.android.ministrydiary.returnvisit.returnvisitdetail.ReturnVisitDetailFrag"
+        android:label="{rvName}"
+        tools:layout="@layout/return_visit_detail">
+        <action
+            android:id="@+id/action_returnVisitDetailFrag_to_addEditRVFrag"
+            app:destination="@id/addEditRVFrag"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_returnVisitDetailFrag_to_addEditBibleStudentFrag"
+            app:destination="@id/addEditBibleStudentFrag" />
+        <argument
+            android:name="rvId"
+            app:argType="string" />
+        <argument
+            android:name="rvName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/returnVisitsFrag"
+        android:name="com.martdev.android.ministrydiary.returnvisit.returnvisits.ReturnVisitsFrag"
+        android:label="Return Visits"
+        tools:layout="@layout/generic_recycler_view">
+        <action
+            android:id="@+id/action_returnVisitsFrag_to_bibleStudentsFrag"
+            app:destination="@id/bibleStudentsFrag" />
+        <action
+            android:id="@+id/action_returnVisitsFrag_to_returnVisitDetailFrag"
+            app:destination="@id/returnVisitDetailFrag"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_returnVisitsFrag_to_addEditRVFrag"
+            app:destination="@id/addEditRVFrag"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+        <argument
+            android:name="message"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/timeDialog"
+        android:name="com.martdev.android.ministrydiary.dialog.TimeDialog"
+        android:label="TimeDialog"
+        tools:layout="@layout/time_picker_dialog"/>
+</navigation>

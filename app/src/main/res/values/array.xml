@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="placements">
+        <item>@string/placement</item>
+        <item>@string/book_brochure</item>
+        <item>@string/watchtower</item>
+        <item>@string/awake</item>
+        <item>@string/tracts</item>
+        <item>@string/bible_read</item>
+    </string-array>
+    <string-array name="study_material">
+        <item>@string/bs_study_material_hint</item>
+        <item>@string/teach_book</item>
+        <item>@string/good_news</item>
+        <item>@string/God_s_love</item>
+        <item>@string/live_forever</item>
+        <item>@string/Jehovah_s_will</item>
+    </string-array>
+
+</resources>
