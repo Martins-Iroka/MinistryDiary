@@ -4,6 +4,7 @@
     package="com.martdev.android.ministrydiary">
 
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name=".MinistryDiaryApp"

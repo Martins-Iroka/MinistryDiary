@@ -18,7 +18,8 @@ class TimeDialog : DialogFragment() {
     private var mTimePicker: TimePicker? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        var theTime = arguments!!.getSerializable(ARG_TIME) as Date
+
+       var theTime = arguments?.getSerializable(ARG_TIME) as Date
 
         val calendar = Calendar.getInstance()
         calendar.time = theTime
@@ -37,24 +38,24 @@ class TimeDialog : DialogFragment() {
         }
 
         return AlertDialog.Builder(activity)
-                .setView(view)
-                .setPositiveButton(android.R.string.ok) { _, _ ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        hour = mTimePicker!!.hour
-                        minute = mTimePicker!!.minute
-                    } else {
-                        hour = mTimePicker!!.currentHour
-                        minute = mTimePicker!!.currentMinute
-                    }
+            .setView(view)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    hour = mTimePicker!!.hour
+                    minute = mTimePicker!!.minute
+                } else {
+                    hour = mTimePicker!!.currentHour
+                    minute = mTimePicker!!.currentMinute
+                }
 
-                    Calendar.getInstance().run {
-                        time = theTime
-                        set(Calendar.HOUR, hour)
-                        set(Calendar.MINUTE, minute)
-                        theTime = time
-                        sendResult(theTime)
-                    }
-                }.create()
+                Calendar.getInstance().run {
+                    time = theTime
+                    set(Calendar.HOUR, hour)
+                    set(Calendar.MINUTE, minute)
+                    theTime = time
+                    sendResult(theTime)
+                }
+            }.create()
     }
 
     private fun sendResult(time: Date) {

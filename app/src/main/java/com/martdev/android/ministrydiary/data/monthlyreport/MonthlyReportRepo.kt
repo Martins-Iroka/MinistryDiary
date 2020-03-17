@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 class MonthlyReportRepo(
     private val dataSource: MonthlyReportSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : GenericRepo<MonthlyReport>{
+) : GenericRepo<MonthlyReport>() {
 
     override fun getList(dateString: String): Result<LiveData<List<MonthlyReport>>> {
         return when(val monthlyReports = dataSource.getList()) {

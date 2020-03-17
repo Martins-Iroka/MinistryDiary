@@ -69,4 +69,12 @@
     <string name="tomorrow">Tomorrow</string>
     <string name="today">Today</string>
     <string name="empty_message">Hey! You did not add a name. </string>
+    <string name="dial_error">There is no number to dial</string>
+    <string name="new_bs">New Bible Student</string>
+    <string name="new_rv">New Return Visit</string>
+    <string name="edit_bs">Edit Bible Student</string>
+    <string name="edit_rv">Edit Return Visit</string>
+    <string name="added_bible_student">Bible Student Added</string>
+    <string name="edited_bible_student">Bible Student Edited</string>
+    <string name="deleted_bible_student">Bible Student Deleted</string>
 </resources>

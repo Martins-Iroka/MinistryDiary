@@ -13,7 +13,7 @@ import java.util.*
 class BibleStudentRepo(
     private val dataSource: BibleStudentLocalDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : GenericRepo<BibleStudent> {
+) : GenericRepo<BibleStudent>() {
 
     //TODO this is the only place you called the extension function. Check it again
     override fun getList(dateString: String): Result<LiveData<List<BibleStudent>>> {

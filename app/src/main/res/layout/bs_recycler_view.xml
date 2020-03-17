@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="bsModel"
+            type="com.martdev.android.ministrydiary.biblestudent.biblestudents.BibleStudentsViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#edf0f2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/bs_item_list"
+            android:visibility="@{bsModel.empty ? View.GONE : View.VISIBLE}"
+            app:list="@{bsModel.items}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{bsModel.empty ? View.VISIBLE : View.GONE}"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/message_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textAlignment="center"
+                android:text="@{bsModel.noBibleStudentLabel}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Message" />
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

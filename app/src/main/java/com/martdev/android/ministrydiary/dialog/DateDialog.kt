@@ -16,7 +16,8 @@ class DateDialog : DialogFragment() {
     private var mDatePicker: DatePicker? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        var date = arguments!!.getSerializable(ARG_DATE) as Date
+
+        var date = arguments?.getSerializable(ARG_DATE) as Date
 
         val calendar = Calendar.getInstance()
         calendar.time = date

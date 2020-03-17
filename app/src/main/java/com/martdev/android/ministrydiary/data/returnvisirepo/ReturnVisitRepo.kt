@@ -14,7 +14,7 @@ import java.util.*
 class ReturnVisitRepo(
     private val dataSource: ReturnVisitDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : GenericRepo<ReturnVisit>{
+) : GenericRepo<ReturnVisit>() {
 
     override fun getList(dateString: String): Result<LiveData<List<ReturnVisit>>> {
         return when(val returnVisits = dataSource.getList()) {

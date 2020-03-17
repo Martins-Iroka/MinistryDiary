@@ -1,5 +1,6 @@
 package com.martdev.android.ministrydiary.biblestudent.addeditbiblestudent
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,9 +9,9 @@ import com.martdev.android.ministrydiary.R
 import com.martdev.android.ministrydiary.data.Result.Success
 import com.martdev.android.ministrydiary.data.biblestudentrepo.BibleStudentRepo
 import com.martdev.android.ministrydiary.data.model.BibleStudent
-import com.martdev.android.ministrydiary.utils.DateUtils
-import com.martdev.android.ministrydiary.utils.Event
+import com.martdev.android.ministrydiary.utils.*
 import kotlinx.coroutines.launch
+import java.util.*
 
 class AddEditBibleStudentVM(
     private val bibleStudentRepo: BibleStudentRepo
@@ -25,11 +26,14 @@ class AddEditBibleStudentVM(
     var _time = MutableLiveData<String>()
     var _studyMaterialId = MutableLiveData<Int>()
 
-    private val _snackbarText = MutableLiveData<Event<Int>>()
-    val snackbarText: LiveData<Event<Int>> = _snackbarText
+    private val _snackbarMessage = MutableLiveData<Event<Int>>()
+    val snackbarMessage: LiveData<Event<Int>> = _snackbarMessage
 
-    private val _navigationEvent = MutableLiveData<Event<Unit>>()
-    val navigationEvent: LiveData<Event<Unit>> = _navigationEvent
+    private val _navigationEvent = MutableLiveData<Event<Int>>()
+    val navigationEvent: LiveData<Event<Int>> = _navigationEvent
+
+    private val _callBibleStudent = MutableLiveData<Event<String>>()
+    val callBibleStudent: LiveData<Event<String>> = _callBibleStudent
 
     private var mBibleStudent = BibleStudent()
 
@@ -73,40 +77,79 @@ class AddEditBibleStudentVM(
             bsPhoneNumber.value = phoneNumber
             _chapter.value = chapter
             _paragraph.value = bibleStudent.paragraph
-            _date.value = DateUtils.setDateFormat(bibleStudent.date)
-            _time.value = DateUtils.setTimeFormat(bibleStudent.time)
-            _studyMaterialId.value = bibleStudent.studyMaterialId
+            _date.value = DateUtils.setDateFormat(date)
+            _time.value = DateUtils.setTimeFormat(time)
+            _studyMaterialId.value = studyMaterialId
         }
     }
 
-    fun getContactName(name: String) {
+    fun setContactName(name: String) {
         bsName.value = name
     }
 
-    fun getContactNumber(number: String) {
+    fun setContactNumber(number: String) {
         bsPhoneNumber.value = number
     }
 
-    fun getStudyMaterialId(id: Int) {
+    fun setStudyMaterialId(id: Int) {
         mBibleStudent.studyMaterialId = id
     }
 
+    fun setStudyMaterial(studyMaterial: String) {
+        mBibleStudent.studyMaterial = studyMaterial
+    }
+
+    fun setDate(date: Date) {
+        mBibleStudent.date = date
+        _date.value = DateUtils.setDateFormat(date)
+    }
+
+    fun setTime(time: Date) {
+        mBibleStudent.time = time
+        _time.value = DateUtils.setTimeFormat(time)
+    }
+
+    fun getDate(): Date = mBibleStudent.date
+
+    fun getTime(): Date = mBibleStudent.time
+
+    fun getPhoneNumber(): String = bsPhoneNumber.value!!
+
+    fun setSnackbarText(@StringRes message: Int) {
+        _snackbarMessage.value = Event(message)
+    }
+
+    fun navigateToDateDialog() {
+        _navigationEvent.value = Event(SHOW_DATE_DIALOG)
+    }
+
+    fun navigateToTimeDialog() {
+        _navigationEvent.value = Event(SHOW_TIME_DIALOG)
+    }
+
     fun saveBibleStudent() {
+        setInfo()
         if (bsId == null) {
             if (bsName.value.isNullOrEmpty()) {
-                _snackbarText.value = Event(R.string.empty_message)
+                _snackbarMessage.value = Event(R.string.empty_message)
                 return
             } else {
                 viewModelScope.launch {
                     bibleStudentRepo.insertItem(mBibleStudent)
                 }
+                _navigationEvent.value = Event(ADD_EDIT_RESULT_OK)
             }
         } else {
             viewModelScope.launch {
                 bibleStudentRepo.updateItem(mBibleStudent)
             }
+            _navigationEvent.value = Event(EDIT_RESULT_OK)
         }
+    }
 
-        _navigationEvent.value = Event(Unit)
+    fun dialNumber() {
+        val phoneNumber = bsPhoneNumber.value
+        if (!phoneNumber.isNullOrEmpty()) _callBibleStudent.value = Event(phoneNumber)
+        else _snackbarMessage.value = Event(R.string.dial_error)
     }
 }

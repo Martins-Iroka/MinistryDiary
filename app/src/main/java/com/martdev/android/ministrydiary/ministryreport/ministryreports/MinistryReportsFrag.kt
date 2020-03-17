@@ -16,7 +16,7 @@ class MinistryReportsFrag : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<ReportsRecyclerViewBinding>(inflater, R.layout.generic_recycler_view, container, false)
+        val binding = DataBindingUtil.inflate<ReportsRecyclerViewBinding>(inflater, R.layout.bs_recycler_view, container, false)
 
         return binding.root
     }

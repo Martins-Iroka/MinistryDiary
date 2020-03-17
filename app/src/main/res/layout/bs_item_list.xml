@@ -2,8 +2,12 @@
 <layout>
     <data>
         <variable
-            name="bibleStudents"
-            type="com.martdev.android.mdbeta.biblestudent.biblestudents.BibleStudentsFragment.BibleStudentHolder" />
+            name="bibleStudent"
+            type="com.martdev.android.ministrydiary.data.model.BibleStudent" />
+
+        <variable
+            name="bsModel"
+            type="com.martdev.android.ministrydiary.biblestudent.biblestudents.BibleStudentsViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        android:onClick="@{() -> bsModel.openBibleStudentDetail(bibleStudent.id, bibleStudent.name)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,7 +37,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Bible Student" />
+                tools:text="Bible Student"
+                android:text="@{bibleStudent.name}"/>
 
             <TextView
                 android:id="@+id/bible_student_date"
@@ -46,19 +52,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bible_student_name"
                 tools:text="Date" />
-
-            <TextView
-                android:id="@+id/bible_student_time"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@android:color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/bible_student_date"
-                app:layout_constraintTop_toBottomOf="@id/bible_student_name"
-                tools:text="Time" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

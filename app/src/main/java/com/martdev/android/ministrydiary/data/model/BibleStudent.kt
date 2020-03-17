@@ -23,6 +23,9 @@ data class BibleStudent(
     @ColumnInfo(name = "study_material_id")
     var studyMaterialId: Int = 0,
 
+    @ColumnInfo(name = "study_material")
+    var studyMaterial: String = "",
+
     @ColumnInfo(name = "_chapter")
     var chapter: String = "",
 

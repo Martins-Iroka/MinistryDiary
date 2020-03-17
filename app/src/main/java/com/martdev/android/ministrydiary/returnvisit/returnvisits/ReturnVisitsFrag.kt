@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.martdev.android.ministrydiary.R
-import com.martdev.android.ministrydiary.databinding.GenericRecyclerViewBinding
+import com.martdev.android.ministrydiary.databinding.RvRecyclerViewBinding
 
 class ReturnVisitsFrag : Fragment() {
 
@@ -16,7 +16,7 @@ class ReturnVisitsFrag : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<GenericRecyclerViewBinding>(inflater, R.layout.generic_recycler_view, container, false)
+        val binding = DataBindingUtil.inflate<RvRecyclerViewBinding>(inflater, R.layout.rv_recycler_view, container, false)
 
         return binding.root
     }

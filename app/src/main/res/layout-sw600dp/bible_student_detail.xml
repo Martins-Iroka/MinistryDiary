@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="presenter"
-            type="com.martdev.android.mdbeta.biblestudent.biblestudentdetail.BSDetailPresenter" />
+            name="bsModel"
+            type="com.martdev.android.ministrydiary.biblestudent.biblestudentdetail.BibleStudentViewModel"/>
     </data>
 
     <ScrollView
@@ -39,7 +39,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{presenter.bsName}"
+                android:text="@{bsModel.bibleStudent.name}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{presenter.bsAddress ?? `No Address`}"
+                android:text="@{bsModel.bibleStudent.address}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{presenter.bsPhoneNumber ?? `No PhoneNumber`}"
+                android:text="@{bsModel.bibleStudent.phoneNumber}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +126,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{presenter.studyMaterial ?? `No Study Material`}"
+                android:text="@{bsModel.bibleStudent.studyMaterial}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +155,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{presenter.chapter ?? `No Chapter or Lesson to study`}"
+                android:text="@{bsModel.bibleStudent.chapter}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +184,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{presenter.paragraph ?? `No Paragraph`}"
+                android:text="@{bsModel.bibleStudent.paragraph}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -213,7 +213,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{presenter.date}"
+                android:text="@{bsModel.date}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -243,7 +243,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="64dp"
-                android:text="@{presenter.time}"
+                android:text="@{bsModel.time}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -258,7 +258,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:onClick="@{() -> presenter.dialNumber()}"
+                android:onClick="@{() -> bsModel.dialNumber()}"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"

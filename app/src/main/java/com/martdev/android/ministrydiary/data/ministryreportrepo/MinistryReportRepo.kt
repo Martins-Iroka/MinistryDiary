@@ -12,7 +12,7 @@ import java.util.*
 class MinistryReportRepo(
     private val dataSource: MinistryReportDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : GenericRepo<MinistryReport> {
+) : GenericRepo<MinistryReport>() {
 
     override fun getList(dateString: String): Result<LiveData<List<MinistryReport>>> {
         return when (val ministryReports = dataSource.getList(dateString)) {

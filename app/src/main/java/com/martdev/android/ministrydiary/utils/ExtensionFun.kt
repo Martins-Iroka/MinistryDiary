@@ -1,5 +1,7 @@
 package com.martdev.android.ministrydiary.utils
 
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
@@ -58,6 +60,24 @@ fun View.showSnackbar(snackbarText: String, timeLength: Int) {
         })
         show()
     }
+}
+
+/**
+ * Called when a user is about to call a number
+ */
+fun Fragment.setupActionCallNumber(
+    lifecycleOwner: LifecycleOwner,
+    callNumberEvent: LiveData<Event<String>>
+) {
+
+    callNumberEvent.observe(lifecycleOwner, Observer { event ->
+        event.getContentIfNotHandled()?.let { phoneNumber ->
+            Intent(Intent.ACTION_CALL).apply {
+                data = Uri.parse("tel: $phoneNumber")
+                startActivity(this)
+            }
+        }
+    })
 }
 
 fun Fragment.getViewModelFactory(): ViewModelFactory {

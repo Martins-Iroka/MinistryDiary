@@ -9,7 +9,7 @@
         android:id="@+id/monthlyReportsFrag"
         android:name="com.martdev.android.ministrydiary.ministryreport.monthlyreportcards.MonthlyReportsFrag"
         android:label="Monthly Report Cards"
-        tools:layout="@layout/generic_recycler_view">
+        tools:layout="@layout/bs_recycler_view">
         <action
             android:id="@+id/action_monthlyReportsFrag_to_returnVisitsFrag"
             app:destination="@id/returnVisitsFrag" />
@@ -41,12 +41,6 @@
             android:name="rv_to_bs_detail"
             app:argType="string[]"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_addEditBibleStudentFrag_to_dateDialog"
-            app:destination="@id/dateDialog" />
-        <action
-            android:id="@+id/action_addEditBibleStudentFrag_to_timeDialog"
-            app:destination="@id/timeDialog" />
         <argument
             android:name="toolbar_title"
             app:argType="string"
@@ -66,9 +60,6 @@
             app:destination="@id/monthlyReportFrag"
             app:popUpTo="@+id/monthlyReportFrag"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_addEditMinistryReport_to_dateDialog"
-            app:destination="@id/dateDialog" />
     </fragment>
     <fragment
         android:id="@+id/addEditRVFrag"
@@ -84,12 +75,6 @@
             android:name="rvId"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_addEditRVFrag_to_dateDialog"
-            app:destination="@id/dateDialog" />
-        <action
-            android:id="@+id/action_addEditRVFrag_to_timeDialog"
-            app:destination="@id/timeDialog" />
         <argument
             android:name="toolbar_title"
             app:argType="string" />
@@ -108,12 +93,15 @@
         <argument
             android:name="bsName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_bibleStudentDetailFrag_to_bibleStudentsFrag"
+            app:destination="@id/bibleStudentsFrag" />
     </fragment>
     <fragment
         android:id="@+id/bibleStudentsFrag"
         android:name="com.martdev.android.ministrydiary.biblestudent.biblestudents.BibleStudentsFrag"
         android:label="Bible Students"
-        tools:layout="@layout/generic_recycler_view">
+        tools:layout="@layout/bs_recycler_view">
         <action
             android:id="@+id/action_bibleStudentsFrag_to_bibleStudentDetailFrag"
             app:destination="@id/bibleStudentDetailFrag" />
@@ -126,15 +114,10 @@
             android:defaultValue="0" />
     </fragment>
     <fragment
-        android:id="@+id/dateDialog"
-        android:name="com.martdev.android.ministrydiary.dialog.DateDialog"
-        android:label="DateDialog"
-        tools:layout="@layout/date_picker_dialog"/>
-    <fragment
         android:id="@+id/ministryReportsFrag"
         android:name="com.martdev.android.ministrydiary.ministryreport.ministryreports.MinistryReportsFrag"
         android:label="MinistryReportsFrag"
-        tools:layout="@layout/generic_recycler_view">
+        tools:layout="@layout/bs_recycler_view">
         <action
             android:id="@+id/action_ministryReportsFrag_to_addEditMinistryReport"
             app:destination="@id/addEditMinistryReport" />
@@ -183,12 +166,15 @@
         <argument
             android:name="rvName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_returnVisitDetailFrag_to_returnVisitsFrag"
+            app:destination="@id/returnVisitsFrag" />
     </fragment>
     <fragment
         android:id="@+id/returnVisitsFrag"
         android:name="com.martdev.android.ministrydiary.returnvisit.returnvisits.ReturnVisitsFrag"
         android:label="Return Visits"
-        tools:layout="@layout/generic_recycler_view">
+        tools:layout="@layout/bs_recycler_view">
         <action
             android:id="@+id/action_returnVisitsFrag_to_bibleStudentsFrag"
             app:destination="@id/bibleStudentsFrag" />
@@ -207,9 +193,4 @@
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
-    <fragment
-        android:id="@+id/timeDialog"
-        android:name="com.martdev.android.ministrydiary.dialog.TimeDialog"
-        android:label="TimeDialog"
-        tools:layout="@layout/time_picker_dialog"/>
 </navigation>

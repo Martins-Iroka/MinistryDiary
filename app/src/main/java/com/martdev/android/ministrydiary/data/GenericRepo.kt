@@ -3,7 +3,7 @@ package com.martdev.android.ministrydiary.data
 import androidx.lifecycle.LiveData
 import java.util.*
 
-interface GenericRepo<T> : GenericDataSource<T>{
+open class GenericRepo<T> : GenericDataSource<T>{
 
     override fun getList(dateString: String): Result<LiveData<List<T>>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
