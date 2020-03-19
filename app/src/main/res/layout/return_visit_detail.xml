@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="returnVisit"
-            type="com.martdev.android.mdbeta.returnvisit.returnvisitdetail.RVDetailPresenter" />
+            name="rvModel"
+            type="com.martdev.android.ministrydiary.returnvisit.returnvisitdetail.ReturnVisitDetailVM" />
     </data>
 
     <ScrollView
@@ -39,7 +39,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{returnVisit.name}"
+                android:text="@{rvModel.returnVisit.name}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{returnVisit.address ?? `No Address`}"
+                app:address_view="@{rvModel.returnVisit.address}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{returnVisit.phoneNumber ?? `No PhoneNumber`}"
+                app:phoneNumber_view="@{rvModel.returnVisit.phoneNumber}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +126,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{returnVisit.placement ?? `No Placement`}"
+                app:placement_view="@{rvModel.returnVisit.placement}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,12 +155,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{returnVisit.title_passage ?? `No Title/Passage Read`}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
+                app:title_passage_view="@{rvModel.returnVisit.title_passage}"
                 tools:text="Title" />
 
             <TextView
@@ -184,7 +185,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{returnVisit.question_left ?? `No Question To Answer`}"
+                app:question_view="@{rvModel.returnVisit.question}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -213,7 +214,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{returnVisit.date}"
+                android:text="@{rvModel.date}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -243,7 +244,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="64dp"
-                android:text="@{returnVisit.time}"
+                android:text="@{rvModel.time}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -251,18 +252,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView15"
                 tools:text="Time" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:onClick="@{() -> returnVisit.dialNumber()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:srcCompat="@drawable/ic_phone_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

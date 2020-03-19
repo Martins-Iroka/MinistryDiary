@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/bs_item_list"
             android:visibility="@{bsModel.empty ? View.GONE : View.VISIBLE}"
-            app:list="@{bsModel.items}"/>
+            app:bibleStudentList="@{bsModel.items}"/>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,22 +1,19 @@
 package com.martdev.android.ministrydiary.biblestudent.biblestudents
 
-import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.martdev.android.ministrydiary.R
+import com.martdev.android.ministrydiary.biblestudent.biblestudents.BibleStudentsAdapter.BibleStudentViewHolder
 import com.martdev.android.ministrydiary.data.model.BibleStudent
 import com.martdev.android.ministrydiary.databinding.BsItemListBinding
-import com.martdev.android.ministrydiary.utils.DateUtils
-import java.util.*
+import com.martdev.android.ministrydiary.utils.showDate
 
 class BibleStudentsAdapter(
-    private val viewModel: BibleStudentsViewModel,
-    private val context: Context
-) :
-    ListAdapter<BibleStudent, BibleStudentsAdapter.BibleStudentViewHolder>(BibleStudentDiffCallback()) {
+    private val viewModel: BibleStudentsViewModel
+) : ListAdapter<BibleStudent, BibleStudentViewHolder>(BibleStudentDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BibleStudentViewHolder {
         return BibleStudentViewHolder.from(parent)
@@ -25,32 +22,22 @@ class BibleStudentsAdapter(
     override fun onBindViewHolder(holder: BibleStudentViewHolder, position: Int) {
         val item = getItem(position)
 
-        holder.bind(viewModel, item, context)
+        holder.bind(viewModel, item)
     }
 
     class BibleStudentViewHolder private constructor(val binding: BsItemListBinding) :
         ViewHolder(binding.root) {
 
-        fun bind(viewModel: BibleStudentsViewModel, bibleStudent: BibleStudent, context: Context) {
+        fun bind(viewModel: BibleStudentsViewModel, bibleStudent: BibleStudent) {
             binding.bsModel = viewModel
             binding.bibleStudent = bibleStudent
-            binding.bibleStudentDate.text = getDateInString(bibleStudent.date, viewModel.date,  context)
-            binding.executePendingBindings()
-        }
-
-        private fun getDateInString(date: Date, currentDate: Date, context: Context): String {
-            val dateString = DateUtils.getReadableDate(date.time, context)
-            return when {
-                dateString.contentEquals("Today") -> {
-                    context.resources.getString(R.string.visiting)
-                }
-                date.time < currentDate.time -> {
-                    String.format("Previous visit was %s", dateString)
-                }
-                else -> {
-                    String.format("Next visit %s", dateString)
-                }
+            binding.bibleStudentDate.showDate(bibleStudent.date, viewModel.date)
+            if (bibleStudent.phoneNumber.isEmpty()) {
+                binding.dialBsNumber.visibility = View.GONE
+            } else {
+                binding.dialBsNumber.visibility = View.VISIBLE
             }
+            binding.executePendingBindings()
         }
 
         companion object {

@@ -7,9 +7,4 @@
         android:icon="@drawable/ic_done_all_black_24dp"
         android:title="@string/save"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/move_to_bs"
-        android:title="@string/move_to_bs"
-        app:showAsAction="never"/>
 </menu>

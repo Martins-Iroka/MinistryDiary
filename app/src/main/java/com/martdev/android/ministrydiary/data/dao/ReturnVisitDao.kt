@@ -11,7 +11,7 @@ interface ReturnVisitDao {
     @Query("SELECT * FROM return_visit_table")
     fun getReturnVisits(): LiveData<List<ReturnVisit>>
 
-    @Query("SELECT * FROM return_visit_table WHERE _date = :_date")
+    @Query("SELECT * FROM return_visit_table WHERE _date = :date")
     fun filterByDate(date: Date): LiveData<List<ReturnVisit>>
 
     @Query("SELECT * FROM return_visit_table WHERE rv_Id = :rvId")

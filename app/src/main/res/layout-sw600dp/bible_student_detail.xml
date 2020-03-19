@@ -7,7 +7,7 @@
 
         <variable
             name="bsModel"
-            type="com.martdev.android.ministrydiary.biblestudent.biblestudentdetail.BibleStudentViewModel"/>
+            type="com.martdev.android.ministrydiary.biblestudent.biblestudentdetail.BibleStudentDetailVM"/>
     </data>
 
     <ScrollView
@@ -68,7 +68,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.address}"
+                app:address_view="@{bsModel.bibleStudent.address}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.phoneNumber}"
+                app:phoneNumber_view="@{bsModel.bibleStudent.phoneNumber}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +126,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.studyMaterial}"
+                app:study_material_view="@{bsModel.bibleStudent.studyMaterial}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +155,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.chapter}"
+                app:chapter_lesson_view="@{bsModel.bibleStudent.chapter}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +184,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.paragraph}"
+                app:paragraph_view="@{bsModel.bibleStudent.paragraph}"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -252,17 +252,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView15"
                 tools:text="Time" />
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:onClick="@{() -> bsModel.dialNumber()}"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:srcCompat="@drawable/ic_phone_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

@@ -1,6 +1,5 @@
 package com.martdev.android.ministrydiary.biblestudent.addeditbiblestudent
 
-import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,16 +34,16 @@ class AddEditBibleStudentVM(
     private val _callBibleStudent = MutableLiveData<Event<String>>()
     val callBibleStudent: LiveData<Event<String>> = _callBibleStudent
 
-    private var mBibleStudent = BibleStudent()
+    private var bibleStudent = BibleStudent()
 
     private var bsId: String? = null
 
     private fun setInfo() {
-        mBibleStudent.name = bsName.value.orEmpty()
-        mBibleStudent.address = bsAddress.value.orEmpty()
-        mBibleStudent.phoneNumber = bsPhoneNumber.value.orEmpty()
-        mBibleStudent.chapter = _chapter.value.orEmpty()
-        mBibleStudent.paragraph = _paragraph.value.orEmpty()
+        bibleStudent.name = bsName.value.orEmpty()
+        bibleStudent.address = bsAddress.value.orEmpty()
+        bibleStudent.phoneNumber = bsPhoneNumber.value.orEmpty()
+        bibleStudent.chapter = _chapter.value.orEmpty()
+        bibleStudent.paragraph = _paragraph.value.orEmpty()
     }
 
     fun start(bsId: String?, rvDetails: Array<String>?) {
@@ -69,14 +68,14 @@ class AddEditBibleStudentVM(
         }
     }
 
-    private fun loadData(bibleStudent: BibleStudent) {
-        bibleStudent.apply {
-            mBibleStudent = this
+    private fun loadData(student: BibleStudent) {
+        student.apply {
+            this@AddEditBibleStudentVM.bibleStudent = this
             bsName.value = name
             bsAddress.value = address
             bsPhoneNumber.value = phoneNumber
             _chapter.value = chapter
-            _paragraph.value = bibleStudent.paragraph
+            _paragraph.value = student.paragraph
             _date.value = DateUtils.setDateFormat(date)
             _time.value = DateUtils.setTimeFormat(time)
             _studyMaterialId.value = studyMaterialId
@@ -92,32 +91,26 @@ class AddEditBibleStudentVM(
     }
 
     fun setStudyMaterialId(id: Int) {
-        mBibleStudent.studyMaterialId = id
+        bibleStudent.studyMaterialId = id
     }
 
     fun setStudyMaterial(studyMaterial: String) {
-        mBibleStudent.studyMaterial = studyMaterial
+        bibleStudent.studyMaterial = studyMaterial
     }
 
     fun setDate(date: Date) {
-        mBibleStudent.date = date
+        bibleStudent.date = date
         _date.value = DateUtils.setDateFormat(date)
     }
 
     fun setTime(time: Date) {
-        mBibleStudent.time = time
+        bibleStudent.time = time
         _time.value = DateUtils.setTimeFormat(time)
     }
 
-    fun getDate(): Date = mBibleStudent.date
+    fun getDate(): Date = bibleStudent.date
 
-    fun getTime(): Date = mBibleStudent.time
-
-    fun getPhoneNumber(): String = bsPhoneNumber.value!!
-
-    fun setSnackbarText(@StringRes message: Int) {
-        _snackbarMessage.value = Event(message)
-    }
+    fun getTime(): Date = bibleStudent.time
 
     fun navigateToDateDialog() {
         _navigationEvent.value = Event(SHOW_DATE_DIALOG)
@@ -135,13 +128,13 @@ class AddEditBibleStudentVM(
                 return
             } else {
                 viewModelScope.launch {
-                    bibleStudentRepo.insertItem(mBibleStudent)
+                    bibleStudentRepo.insertItem(bibleStudent)
                 }
-                _navigationEvent.value = Event(ADD_EDIT_RESULT_OK)
+                _navigationEvent.value = Event(ADD_RESULT_OK)
             }
         } else {
             viewModelScope.launch {
-                bibleStudentRepo.updateItem(mBibleStudent)
+                bibleStudentRepo.updateItem(bibleStudent)
             }
             _navigationEvent.value = Event(EDIT_RESULT_OK)
         }

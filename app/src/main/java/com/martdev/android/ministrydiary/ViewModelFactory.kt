@@ -3,7 +3,7 @@ package com.martdev.android.ministrydiary
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.martdev.android.ministrydiary.biblestudent.addeditbiblestudent.AddEditBibleStudentVM
-import com.martdev.android.ministrydiary.biblestudent.biblestudentdetail.BibleStudentViewModel
+import com.martdev.android.ministrydiary.biblestudent.biblestudentdetail.BibleStudentDetailVM
 import com.martdev.android.ministrydiary.biblestudent.biblestudents.BibleStudentsViewModel
 import com.martdev.android.ministrydiary.data.biblestudentrepo.BibleStudentRepo
 import com.martdev.android.ministrydiary.data.ministryreportrepo.MinistryReportRepo
@@ -23,8 +23,8 @@ class ViewModelFactory(
             when {
                 isAssignableFrom(AddEditBibleStudentVM::class.java) ->
                     AddEditBibleStudentVM(bibleStudentRepo)
-                isAssignableFrom(BibleStudentViewModel::class.java) ->
-                    BibleStudentViewModel(bibleStudentRepo)
+                isAssignableFrom(BibleStudentDetailVM::class.java) ->
+                    BibleStudentDetailVM(bibleStudentRepo)
                 isAssignableFrom(BibleStudentsViewModel::class.java) ->
                     BibleStudentsViewModel(bibleStudentRepo)
                 else -> throw IllegalArgumentException("Unknown ViewModel class")

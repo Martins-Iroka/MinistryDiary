@@ -12,8 +12,8 @@ import com.martdev.android.ministrydiary.R
 import com.martdev.android.ministrydiary.databinding.BsRecyclerViewBinding
 import com.martdev.android.ministrydiary.utils.EventObserver
 import com.martdev.android.ministrydiary.utils.getViewModelFactory
+import com.martdev.android.ministrydiary.utils.setupActionCallNumber
 import com.martdev.android.ministrydiary.utils.setupSnackbar
-import timber.log.Timber
 
 class BibleStudentsFrag : Fragment() {
 
@@ -22,8 +22,6 @@ class BibleStudentsFrag : Fragment() {
     private val args: BibleStudentsFragArgs by navArgs()
 
     private lateinit var binding: BsRecyclerViewBinding
-
-    private lateinit var listAdapter: BibleStudentsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +37,7 @@ class BibleStudentsFrag : Fragment() {
         setupSnackbar()
         setupListAdapter()
         setupNavigation()
+        setupActionCallNumber(this, viewModel.callBibleStudent)
         return binding.root
     }
 
@@ -47,7 +46,7 @@ class BibleStudentsFrag : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.add_rv_bs -> {
                 viewModel.addNewBibleStudent()
                 true
@@ -66,7 +65,7 @@ class BibleStudentsFrag : Fragment() {
 
     private fun setupNavigation() {
         viewModel.addNewBibleStudentEvent.observe(this, EventObserver {
-            navigationToAddNewBibleStudent()
+            navigateToAddNewBibleStudent()
         })
 
         viewModel.openBibleStudentDetailEvent.observe(this, EventObserver {
@@ -81,7 +80,7 @@ class BibleStudentsFrag : Fragment() {
         viewModel.checkResultMessage(args.message)
     }
 
-    private fun navigationToAddNewBibleStudent() {
+    private fun navigateToAddNewBibleStudent() {
         val action = BibleStudentsFragDirections
             .actionBibleStudentsFragToAddEditBibleStudentFrag(
                 null,
@@ -98,12 +97,6 @@ class BibleStudentsFrag : Fragment() {
     }
 
     private fun setupListAdapter() {
-        val viewModel = binding.bsModel
-        if (viewModel != null) {
-            listAdapter = BibleStudentsAdapter(viewModel, activity!!)
-            binding.recyclerView.adapter = listAdapter
-        } else {
-            Timber.w("ViewModel not initialized when attempting to set up adapter.")
-        }
+        binding.recyclerView.adapter = BibleStudentsAdapter(viewModel)
     }
 }

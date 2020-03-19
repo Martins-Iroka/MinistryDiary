@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/addEditRVFrag"
-        android:name="com.martdev.android.ministrydiary.returnvisit.addeditreturnvisit.AddEditRVFrag"
+        android:name="com.martdev.android.ministrydiary.returnvisit.addeditreturnvisit.AddEditReturnVisitFrag"
         android:label="{toolbar_title}"
         tools:layout="@layout/add_edit_rv">
         <action

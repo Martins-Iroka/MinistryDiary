@@ -26,8 +26,8 @@ data class ReturnVisit(
     @ColumnInfo(name = "placement")
     var placement: String = "",
 
-    @ColumnInfo(name = "title")
-    var title: String = "",
+    @ColumnInfo(name = "title_passage")
+    var title_passage: String = "",
 
     @ColumnInfo(name = "question_left")
     var question: String = "",

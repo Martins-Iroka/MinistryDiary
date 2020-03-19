@@ -6,10 +6,12 @@ import android.app.Activity
 val CONTACT_PERMISSION = arrayOf(Manifest.permission.READ_CONTACTS)
 const val REQUEST_CONTACT_NAME = 100
 const val REQUEST_CONTACT_PERMISSION = 101
-const val REQUEST_DATE = 102
-const val REQUEST_TIME = 103
+const val REQUEST_DATE_BS = 102
+const val REQUEST_DATE_RV = 112
+const val REQUEST_TIME_BS = 103
+const val REQUEST_TIME_RV = 113
 
-const val ADD_EDIT_RESULT_OK = Activity.RESULT_FIRST_USER + 1
+const val ADD_RESULT_OK = Activity.RESULT_FIRST_USER + 1
 const val DELETE_RESULT_OK = Activity.RESULT_FIRST_USER + 2
 const val EDIT_RESULT_OK = Activity.RESULT_FIRST_USER + 3
 

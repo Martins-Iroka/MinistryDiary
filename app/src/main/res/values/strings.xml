@@ -58,7 +58,7 @@
     <string name="no_chapter_lesson_to_study">No Chapter or Lesson to study</string>
     <string name="no_paragraph">No Paragraph</string>
     <string name="no_placement">No Placement</string>
-    <string name="no_title">No Title</string>
+    <string name="no_title">No Title or Passage read</string>
     <string name="no_question_to_answer">No question to answer</string>
     <string name="send_report">Send Report</string>
     <string name="report">Hello, \nThis is my report for %1$s.\n\nPlacement: %2$s\nVideo Showing: %3$s
@@ -68,7 +68,7 @@
     <string name="all_list">Show all</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="today">Today</string>
-    <string name="empty_message">Hey! You did not add a name. </string>
+    <string name="empty_message">Hey! No information provided. </string>
     <string name="dial_error">There is no number to dial</string>
     <string name="new_bs">New Bible Student</string>
     <string name="new_rv">New Return Visit</string>
@@ -77,4 +77,8 @@
     <string name="added_bible_student">Bible Student Added</string>
     <string name="edited_bible_student">Bible Student Edited</string>
     <string name="deleted_bible_student">Bible Student Deleted</string>
+    <string name="added_return_visit">Return Visit Added</string>
+    <string name="edited_return_visit">Return Visit Edited</string>
+    <string name="deleted_return_visit">Return Visit Deleted</string>
+    <string name="move_rv_to_bs_error">This return visit can\'t be moved to bible student. No information provided.</string>
 </resources>

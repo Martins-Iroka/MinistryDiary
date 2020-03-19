@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="returnVisit"
-            type="com.martdev.android.mdbeta.returnvisit.addeditrv.AddEditRVPresenter" />
+            name="rvModel"
+            type="com.martdev.android.ministrydiary.returnvisit.addeditreturnvisit.AddEditReturnVisitVM" />
     </data>
 
     <ScrollView
@@ -37,7 +37,7 @@
                     android:hint="@string/name_hint"
                     android:inputType="textCapSentences"
                     android:maxLines="1"
-                    android:text="@={returnVisit.name}" />
+                    android:text="@={rvModel.rvName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
@@ -49,7 +49,6 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/contact_image_button"
-                android:onClick="@{() -> returnVisit.openContactList()}"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -64,7 +63,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/call_image_button"
-                android:onClick="@{() -> returnVisit.setDialNumber()}"
+                android:onClick="@{() -> rvModel.dialNumber()}"
                 app:layout_constraintBottom_toTopOf="@+id/placement"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout8"
@@ -87,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/address_hint"
                     android:inputType="textCapSentences"
-                    android:text="@={returnVisit.address}" />
+                    android:text="@={rvModel.rvAddress}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/phone_number_hint"
                     android:inputType="phone"
-                    android:text="@={returnVisit.phoneNumber}" />
+                    android:text="@={rvModel.rvPhoneNumber}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
@@ -138,7 +137,7 @@
                     android:enabled="false"
                     android:hint="@string/title_hint"
                     android:inputType="textCapSentences"
-                    android:text="@={returnVisit.title_passage}" />
+                    android:text="@={rvModel.title_passage_read}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/question_box_hint"
                     android:inputType="textMultiLine"
-                    android:text="@={returnVisit.question_left}" />
+                    android:text="@={rvModel.question_left}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -180,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:hint="@string/date_hint"
-                    android:text="@={returnVisit.date}"
+                    android:text="@={rvModel._date}"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -201,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:enabled="false"
                     android:hint="@string/time_hint"
-                    android:text="@={returnVisit.time}"
+                    android:text="@={rvModel._time}"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -214,7 +213,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="32dp"
                 android:contentDescription="@string/date"
-                android:onClick="@{() -> returnVisit.openDateDialog()}"
+                android:onClick="@{() -> rvModel.navigateToDateDialog()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/date_field"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout12"
@@ -229,7 +228,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="24dp"
                 android:contentDescription="@string/time"
-                android:onClick="@{() -> returnVisit.openTimeDialog()}"
+                android:onClick="@{() -> rvModel.navigateToTimeDialog()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/time_field"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout12"

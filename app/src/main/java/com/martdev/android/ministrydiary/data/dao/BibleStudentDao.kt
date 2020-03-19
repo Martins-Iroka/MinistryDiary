@@ -11,7 +11,7 @@ interface BibleStudentDao {
     @Query("SELECT * FROM bible_student_table")
     fun getBibleStudents(): LiveData<List<BibleStudent>>
 
-    @Query("SELECT * FROM bible_student_table WHERE _date = :_date")
+    @Query("SELECT * FROM bible_student_table WHERE _date = :date")
     fun filterByDate(date: Date): LiveData<List<BibleStudent>>
 
     @Query("SELECT * FROM bible_student_table WHERE bs_id = :bsId")

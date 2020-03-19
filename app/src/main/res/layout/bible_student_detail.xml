@@ -7,7 +7,7 @@
 
         <variable
             name="bsModel"
-            type="com.martdev.android.ministrydiary.biblestudent.biblestudentdetail.BibleStudentViewModel"/>
+            type="com.martdev.android.ministrydiary.biblestudent.biblestudentdetail.BibleStudentDetailVM" />
     </data>
 
     <ScrollView
@@ -68,9 +68,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.address}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
+                app:address_view="@{bsModel.bibleStudent.address}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
@@ -97,12 +97,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.phoneNumber}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:phoneNumber_view="@{bsModel.bibleStudent.phoneNumber}"
                 tools:text="Number" />
 
             <TextView
@@ -126,12 +126,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.studyMaterial}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
+                app:study_material_view="@{bsModel.bibleStudent.studyMaterial}"
                 tools:text="Study Material" />
 
             <TextView
@@ -155,9 +155,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.chapter}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
+                app:chapter_lesson_view="@{bsModel.bibleStudent.chapter}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9"
@@ -184,12 +184,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{bsModel.bibleStudent.paragraph}"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
+                app:paragraph_view="@{bsModel.bibleStudent.paragraph}"
                 tools:text="Paragraph" />
 
             <TextView
@@ -252,18 +252,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView15"
                 tools:text="Time" />
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:onClick="@{() -> bsModel.dialNumber()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:srcCompat="@drawable/ic_phone_black_24dp"
-                android:contentDescription="@null" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

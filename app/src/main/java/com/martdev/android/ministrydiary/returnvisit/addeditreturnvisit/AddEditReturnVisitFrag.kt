@@ -1,13 +1,11 @@
-package com.martdev.android.ministrydiary.biblestudent.addeditbiblestudent
+package com.martdev.android.ministrydiary.returnvisit.addeditreturnvisit
 
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -17,19 +15,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.martdev.android.ministrydiary.R
-import com.martdev.android.ministrydiary.databinding.AddEditBsBinding
+import com.martdev.android.ministrydiary.databinding.AddEditRvBinding
 import com.martdev.android.ministrydiary.dialog.DateDialog
 import com.martdev.android.ministrydiary.dialog.TimeDialog
 import com.martdev.android.ministrydiary.utils.*
 import java.util.*
 
-class AddEditBibleStudentFrag : Fragment() {
+class AddEditReturnVisitFrag : Fragment() {
 
-    private lateinit var binding: AddEditBsBinding
+    private lateinit var binding: AddEditRvBinding
 
-    private val args: AddEditBibleStudentFragArgs by navArgs()
+    private val args: AddEditReturnVisitFragArgs by navArgs()
 
-    private val viewModel by viewModels<AddEditBibleStudentVM> { getViewModelFactory() }
+    private val viewModel by viewModels<AddEditReturnVisitVM> { getViewModelFactory() }
 
     private var action: NavDirections? = null
 
@@ -50,20 +48,20 @@ class AddEditBibleStudentFrag : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.add_edit_bs, container, false)
-        viewModel.start(args.bsId, args.rvToBsDetail)
-        binding.bsModel = viewModel
+        binding = DataBindingUtil.inflate(inflater, R.layout.add_edit_rv, container, false)
+        viewModel.start(args.rvId)
+        binding.rvModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         manager = parentFragmentManager
 
-        binding.getBsName.setOnClickListener {
+        binding.getRvName.setOnClickListener {
             showContactList()
         }
+        setupActionCallNumber(this, viewModel.callReturnVisit)
 
-        setupSpinner()
-        setupActionCallNumber(this, viewModel.callBibleStudent)
-        setupSnackbar()
         setupNavigation()
+        setupSnackbar()
+        setupSpinner()
         return binding.root
     }
 
@@ -75,26 +73,26 @@ class AddEditBibleStudentFrag : Fragment() {
         viewModel.navigationEvent.observe(this, EventObserver {
             when (it) {
                 ADD_RESULT_OK -> {
-                    action = AddEditBibleStudentFragDirections
-                        .actionAddEditBibleStudentFragToBibleStudentsFrag(ADD_RESULT_OK)
+                    action = AddEditReturnVisitFragDirections
+                        .actionAddEditRVFragToReturnVisitsFrag(ADD_RESULT_OK)
                     findNavController().navigate(action!!)
                 }
                 EDIT_RESULT_OK -> {
-                    action = AddEditBibleStudentFragDirections
-                        .actionAddEditBibleStudentFragToBibleStudentsFrag(EDIT_RESULT_OK)
+                    action = AddEditReturnVisitFragDirections
+                        .actionAddEditRVFragToReturnVisitsFrag(EDIT_RESULT_OK)
                     findNavController().navigate(action!!)
                 }
                 SHOW_DATE_DIALOG -> {
                     date = viewModel.getDate()
                     DateDialog.newInstance(date!!).apply {
-                        setTargetFragment(this@AddEditBibleStudentFrag, REQUEST_DATE_BS)
+                        setTargetFragment(this@AddEditReturnVisitFrag, REQUEST_DATE_RV)
                         manager?.let { m -> show(m, DATE_DIALOG) }
                     }
                 }
                 SHOW_TIME_DIALOG -> {
                     time = viewModel.getTime()
                     TimeDialog.newInstance(time!!).apply {
-                        setTargetFragment(this@AddEditBibleStudentFrag, REQUEST_TIME_BS)
+                        setTargetFragment(this@AddEditReturnVisitFrag, REQUEST_TIME_RV)
                         manager?.let { m -> show(m, TIME_DIALOG) }
                     }
                 }
@@ -102,41 +100,41 @@ class AddEditBibleStudentFrag : Fragment() {
         })
     }
 
+    private fun setupSpinner() {
+        binding.placement.adapter = ArrayAdapter.createFromResource(activity!!,
+            R.array.placements, android.R.layout.simple_spinner_item).apply {
+            setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        }
+        binding.placement.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                when (val selection = parent.getItemAtPosition(position) as String) {
+                    "Book/Brochure", "Watchtower", "Awake", "Tract", "Bible Read" -> {
+                        binding.rvTitle.isEnabled = true
+                        viewModel.setPlacementId(position)
+                        viewModel.setPlacement(selection)
+                    }
+                    else -> {
+                        getString(R.string.placement)
+                        binding.rvTitle.isEnabled = false
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.add_edit_bs, menu)
+        inflater.inflate(R.menu.add_edit_rv, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.save) {
-            viewModel.saveBibleStudent()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun setupSpinner() {
-
-        binding.bsStudyMaterial.adapter = ArrayAdapter.createFromResource(activity!!,
-            R.array.study_material, android.R.layout.simple_spinner_item).apply {
-            setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-        }
-        binding.bsStudyMaterial.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return when (item.itemId) {
+            R.id.save -> {
+                viewModel.saveBibleStudent()
+                true
             }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selection = parent?.getItemAtPosition(position) as String
-                if (selection != "Study Material") {
-                    viewModel.setStudyMaterial(selection)
-                    viewModel.setStudyMaterialId(position)
-                }
-            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -151,10 +149,10 @@ class AddEditBibleStudentFrag : Fragment() {
                 val contactName = contactUri.queryContacts(context)
                 viewModel.setContactName(contactName)
             }
-        } else if (requestCode == REQUEST_DATE_BS && data != null) {
+        } else if (requestCode == REQUEST_DATE_RV && data != null) {
             date = DateDialog.getNewDate(data)
             viewModel.setDate(date!!)
-        } else if (requestCode == REQUEST_TIME_BS && data != null) {
+        } else if (requestCode == REQUEST_TIME_RV && data != null) {
             time = TimeDialog.getNewTime(data)
             viewModel.setTime(time!!)
         }

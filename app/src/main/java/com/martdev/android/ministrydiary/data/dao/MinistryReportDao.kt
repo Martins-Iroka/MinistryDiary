@@ -16,12 +16,12 @@ interface MinistryReportDao {
     @Query("DELETE FROM ministry_report WHERE report_id = :reportId")
     suspend fun deleteReport(reportId: String)
 
-    @Query("SELECT * FROM ministry_report WHERE dateString = :_date")
+    @Query("SELECT * FROM ministry_report WHERE dateString = :date")
     fun getMinistryReports(date: String): LiveData<List<MinistryReport>>
 
     @Query("SELECT * FROM ministry_report WHERE report_id = :reportId")
     suspend fun getMinistryReport(reportId: String): MinistryReport
 
-    @Query("DELETE FROM ministry_report WHERE dateString = :_date")
+    @Query("DELETE FROM ministry_report WHERE dateString = :date")
     suspend fun deleteMinistryReportsByDate(date: String)
 }

@@ -3,12 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="returnVisit"
+            type="com.martdev.android.ministrydiary.data.model.ReturnVisit" />
+
+        <variable
+            name="rvModel"
+            type="com.martdev.android.ministrydiary.returnvisit.returnvisits.ReturnVisitsViewModel" />
+    </data>
     <androidx.cardview.widget.CardView
         android:id="@+id/rv_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        android:onClick="@{() -> rvModel.openReturnVisitDetail(returnVisit.id, returnVisit.name)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,11 +30,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@{returnVisit.name}"
+                app:layout_constraintEnd_toStartOf="@+id/dial_rv_number"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Return Visit" />
@@ -35,25 +46,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:textColor="@android:color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dial_rv_number"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/return_visit_name"
                 tools:text="Date" />
 
-            <TextView
-                android:id="@+id/return_v_time"
-                android:layout_width="0dp"
+            <ImageButton
+                android:id="@+id/dial_rv_number"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@android:color/black"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{() -> rvModel.dialNumber(returnVisit)}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/return_v_date"
-                app:layout_constraintTop_toBottomOf="@+id/return_visit_name"
-                tools:text="Time" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_phone_black_24dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
