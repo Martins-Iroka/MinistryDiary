@@ -32,9 +32,6 @@ data class BibleStudent(
     @ColumnInfo(name = "_paragraph")
     var paragraph: String = "",
 
-    @ColumnInfo(name = "visit_status")
-    var isVisitingBS: Boolean = false,
-
     @ColumnInfo(name = "_date")
     var date: Date = Date(),
 

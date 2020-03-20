@@ -36,9 +36,6 @@ data class ReturnVisit(
     var date: Date = Date(),
 
     @ColumnInfo(name = "_time")
-    var time: Date = Date(),
-
-    @ColumnInfo(name = "visit_status")
-    var isVisitingRV: Boolean = false
+    var time: Date = Date()
 
 )

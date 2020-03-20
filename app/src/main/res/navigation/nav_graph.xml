@@ -47,21 +47,6 @@
             app:nullable="true" />
     </fragment>
     <fragment
-        android:id="@+id/addEditMinistryReport"
-        android:name="com.martdev.android.ministrydiary.ministryreport.addeditministryreport.AddEditMinistryReport"
-        android:label="AddEditMinistryReport"
-        tools:layout="@layout/add_edit_report">
-        <argument
-            android:name="reportId"
-            app:argType="string"
-            app:nullable="true" />
-        <action
-            android:id="@+id/action_addEditMinistryReport_to_monthlyReportFrag"
-            app:destination="@id/monthlyReportFrag"
-            app:popUpTo="@+id/monthlyReportFrag"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
         android:id="@+id/addEditRVFrag"
         android:name="com.martdev.android.ministrydiary.returnvisit.addeditreturnvisit.AddEditReturnVisitFrag"
         android:label="{toolbar_title}"
@@ -118,9 +103,6 @@
         android:name="com.martdev.android.ministrydiary.ministryreport.ministryreports.MinistryReportsFrag"
         android:label="MinistryReportsFrag"
         tools:layout="@layout/bs_recycler_view">
-        <action
-            android:id="@+id/action_ministryReportsFrag_to_addEditMinistryReport"
-            app:destination="@id/addEditMinistryReport" />
         <argument
             android:name="date"
             app:argType="string" />
@@ -130,9 +112,6 @@
         android:name="com.martdev.android.ministrydiary.ministryreport.monthlyreportcard.MonthlyReportFrag"
         android:label="MonthlyReportFrag"
         tools:layout="@layout/ministry_report_view">
-        <action
-            android:id="@+id/action_monthlyReportFrag_to_addEditMinistryReport"
-            app:destination="@id/addEditMinistryReport" />
         <action
             android:id="@+id/action_monthlyReportFrag_to_ministryReportsFrag"
             app:destination="@id/ministryReportsFrag"
